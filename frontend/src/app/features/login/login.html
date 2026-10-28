@@ -1,0 +1,66 @@
+<div class="page">
+  <section class="hero">
+    <div class="brand">
+      <div class="logo">A</div>
+      <span>Atlas</span>
+    </div>
+    <h1>One retrieval core.<br /><em>Four</em> specialist agents.</h1>
+    <p class="lede">
+      Grounded answers with citations, live guardrails and per-answer evaluation, orchestrated by
+      LangGraph over hybrid search (stemmed BM25 + embeddings + cross-encoder rerank).
+    </p>
+    <ul class="agents">
+      @for (a of agents; track a.title) {
+        <li>
+          <span class="ms">{{ a.icon }}</span>
+          <div>
+            <strong>{{ a.title }}</strong>
+            <small>{{ a.text }}</small>
+          </div>
+          <span class="role">{{ a.roles }}</span>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <section class="panel">
+    <button class="btn ghost icon theme" (click)="theme.toggle()" aria-label="Toggle theme">
+      <span class="ms">{{ theme.theme() === 'light' ? 'dark_mode' : 'light_mode' }}</span>
+    </button>
+    <form (ngSubmit)="submit()" class="card">
+      <h2>Sign in</h2>
+      <p class="muted">Your role decides which agents you can use.</p>
+      <label>
+        <span>Username</span>
+        <input
+          class="field"
+          name="username"
+          [(ngModel)]="username"
+          autocomplete="username"
+          required
+        />
+      </label>
+      <label>
+        <span>Password</span>
+        <input
+          class="field"
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          autocomplete="current-password"
+          required
+        />
+      </label>
+      @if (error()) {
+        <div class="error"><span class="ms sm">error</span>{{ error() }}</div>
+      }
+      <button class="btn primary submit" type="submit" [disabled]="loading()">
+        {{ loading() ? 'Signing in…' : 'Sign in' }}
+      </button>
+      <div class="roles">
+        <div><span class="chip accent">admin</span> all four agents + eval dashboard</div>
+        <div><span class="chip">staff</span> Clinical Docs + Code Docs only</div>
+      </div>
+    </form>
+  </section>
+</div>

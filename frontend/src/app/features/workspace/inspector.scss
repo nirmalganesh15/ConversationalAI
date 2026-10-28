@@ -1,0 +1,391 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+}
+
+header {
+  padding: 14px 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  .ms {
+    color: var(--accent);
+  }
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.tabs {
+  display: flex;
+  gap: 2px;
+}
+
+// Inactive tabs are icon-only (with tooltip); the active one shows its label.
+
+.tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 0;
+  background: none;
+  padding: 8px 8px 10px;
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  &:hover {
+    color: var(--text);
+  }
+  &.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+}
+
+.badge {
+  background: var(--flag);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0 5px;
+  line-height: 15px;
+}
+
+.content {
+  flex: 1;
+  min-height: 0;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 40px 16px;
+  .ms {
+    font-size: 40px;
+    color: var(--border-strong);
+  }
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 0;
+}
+
+.sub {
+  margin-top: 6px;
+}
+
+// sources
+.source {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  &.hl {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+}
+
+.source-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.num {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+
+.src-label {
+  flex: 1;
+  font-weight: 500;
+  font-size: 12.5px;
+  overflow-wrap: anywhere;
+}
+
+.caret {
+  color: var(--muted);
+}
+
+.scores {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.passage {
+  margin: 0;
+  white-space: pre-wrap;
+  font-size: 11.5px;
+  background: var(--surface-2);
+  border-radius: 8px;
+  padding: 8px 10px;
+  max-height: 260px;
+  overflow: auto;
+}
+
+.tool {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 10px;
+  summary {
+    cursor: pointer;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+  .md {
+    font-size: 12.5px;
+    margin-top: 8px;
+    display: block;
+  }
+}
+
+.meter {
+  display: grid;
+  grid-template-columns: 110px 1fr 44px;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.meter-label {
+  color: var(--muted);
+}
+
+.meter-track {
+  height: 6px;
+  border-radius: 999px;
+  background: var(--surface-3);
+  overflow: hidden;
+}
+
+.meter-fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  border-radius: 999px;
+}
+
+.meter-val {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+// guardrails
+.guard {
+  display: flex;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  > .ms {
+    font-size: 18px;
+  }
+  &.pass > .ms {
+    color: var(--pass);
+  }
+  &.flag {
+    background: var(--flag-soft);
+    border-color: transparent;
+    > .ms {
+      color: var(--flag);
+    }
+  }
+  &.redact {
+    background: var(--redact-soft);
+    border-color: transparent;
+    > .ms {
+      color: var(--redact);
+    }
+  }
+  &.block {
+    background: var(--block-soft);
+    border-color: transparent;
+    > .ms {
+      color: var(--block);
+    }
+  }
+}
+
+.guard-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  small {
+    color: var(--text-2);
+  }
+}
+
+.guard-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  text-transform: capitalize;
+}
+
+// evals
+.gauges {
+  display: flex;
+  justify-content: space-around;
+  padding: 6px 0 10px;
+}
+
+.rationale {
+  margin: 4px 0;
+  padding: 8px 12px;
+  border-left: 3px solid var(--accent);
+  background: var(--surface-2);
+  border-radius: 0 8px 8px 0;
+  font-size: 12.5px;
+  color: var(--text-2);
+}
+
+.kv {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 12.5px;
+  span {
+    color: var(--muted);
+  }
+  strong {
+    font-weight: 500;
+    text-align: right;
+    overflow-wrap: anywhere;
+  }
+  &.indent {
+    padding-left: 12px;
+  }
+}
+
+// usage
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.stat {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  small {
+    color: var(--muted);
+    font-size: 11.5px;
+  }
+  strong {
+    font-size: 17px;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.calls {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  th {
+    text-align: left;
+    color: var(--muted);
+    font-weight: 500;
+    padding: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 5px 4px;
+    border-bottom: 1px solid var(--border);
+    font-variant-numeric: tabular-nums;
+    text-transform: capitalize;
+  }
+  .model {
+    text-transform: none;
+    max-width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+// trace
+.waterfall {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.wf-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 58px;
+  gap: 8px;
+  align-items: center;
+  font-size: 11.5px;
+}
+
+.wf-label {
+  color: var(--text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.wf-track {
+  position: relative;
+  height: 10px;
+  background: var(--surface-2);
+  border-radius: 4px;
+}
+
+.wf-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--accent);
+  border-radius: 3px;
+  min-width: 3px;
+}
+
+.wf-ms {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}

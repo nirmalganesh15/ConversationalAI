@@ -1,0 +1,26 @@
+[00:00:04] Dr. Anjali Rao: Good morning everyone, this is the steering committee for the GLYCO-2 trial. Agenda today is enrollment, the safety review, and the protocol amendment for the renal sub-study.
+[00:00:21] Priya Shah: Thanks Anjali. Quick status first: we have enrolled 412 of the 660 participants, so 62 percent of target. We are about seven weeks behind the original plan.
+[00:00:45] Dr. Anjali Rao: Where is the shortfall coming from?
+[00:00:52] Priya Shah: Mostly the two Bengaluru sites. Screen failure there is running at 41 percent, largely because of the eGFR cut-off. Patients with eGFR between 30 and 45 are being excluded and that is a big slice of the referral population.
+[00:01:20] Mark Lee: That matches what the site coordinators told me. The exclusion is stricter than the current metformin label requires, which only contraindicates below 30.
+[00:01:38] Dr. Anjali Rao: Right. So the proposal on the table is to lower the eGFR threshold to 30 for the renal sub-study, with additional monitoring. Dr. Okafor, what is the safety view?
+[00:01:55] Dr. Chidi Okafor: From the safety side I'm comfortable with 30 as long as we add eGFR checks every three months for that cohort and a stopping rule if eGFR drops below 30 during the study. Lactic acidosis risk rises sharply below that level.
+[00:02:30] Mark Lee: We can build the three-monthly labs into the visit schedule without extra visits, they already come in for HbA1c.
+[00:02:44] Dr. Anjali Rao: Okay. Decision: we will amend the protocol to lower the renal sub-study eGFR threshold from 45 to 30, with three-monthly eGFR monitoring and a mandatory stop if eGFR falls below 30. Any objections? None. Good.
+[00:03:05] Dr. Anjali Rao: Mark, can you own the protocol amendment draft?
+[00:03:09] Mark Lee: Yes, I will draft the amendment and circulate it by September 26th.
+[00:03:15] Dr. Chidi Okafor: I'll write the safety monitoring section and the stopping rule language, I can get that to Mark by the 22nd.
+[00:03:40] Dr. Anjali Rao: Second topic, the safety review. Chidi, anything from the DSMB package?
+[00:03:47] Dr. Chidi Okafor: Two serious adverse events since last meeting. One hospitalization for hypoglycemia in the combination arm, assessed as possibly related. One fall with a wrist fracture, assessed as unrelated. No lactic acidosis cases. Gastrointestinal adverse events are in line with the label, about 18 percent, mostly in the first four weeks.
+[00:04:30] Priya Shah: Do we need to change anything for the hypoglycemia case?
+[00:04:36] Dr. Chidi Okafor: I don't think a protocol change is needed, but I'd like sites to re-train participants on hypoglycemia symptoms in the combination arm.
+[00:04:50] Dr. Anjali Rao: Agreed. Decision: no protocol change for hypoglycemia, but sites will run a refresher on hypoglycemia recognition for combination-arm participants. Priya, can you coordinate with the sites?
+[00:05:02] Priya Shah: Yes, I'll send the refresher materials to all sites by end of next week and track completion.
+[00:05:20] Dr. Anjali Rao: Third topic, enrollment recovery. Besides the eGFR change, what else?
+[00:05:28] Priya Shah: I'd like to open two additional sites in Pune. Both have endocrinology clinics with good referral volume and they've done trials with us before.
+[00:05:45] Mark Lee: Budget-wise we have room for two sites if we close the underperforming Kochi site, which has enrolled only 6 people in five months.
+[00:06:02] Dr. Anjali Rao: I'm reluctant to close Kochi until we see the effect of the eGFR change. Let's open the two Pune sites now and revisit Kochi at the December meeting.
+[00:06:15] Priya Shah: That works. I'll start site qualification for Pune this month; realistic activation is mid-November.
+[00:06:30] Dr. Anjali Rao: Decision: open two new sites in Pune, target activation mid-November; Kochi stays open and will be reviewed in December. Anything else?
+[00:06:40] Mark Lee: Just a reminder that the interim analysis plan needs sign-off before October 15th.
+[00:06:48] Dr. Anjali Rao: I'll review and sign off the interim analysis plan by October 10th. Thanks everyone, meeting closed.

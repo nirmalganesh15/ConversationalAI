@@ -1,0 +1,253 @@
+<header>
+  <div class="title">
+    <span class="ms">data_exploration</span>
+    <strong>Inspector</strong>
+    @if (turn()) {
+      <span class="muted">· turn {{ store.turns().indexOf(turn()!) + 1 }}</span>
+    }
+  </div>
+  <nav class="tabs">
+    @for (t of tabs; track t.id) {
+      <button
+        class="tab"
+        [class.active]="tab() === t.id"
+        (click)="tab.set(t.id)"
+        [matTooltip]="t.label"
+        [matTooltipDisabled]="tab() === t.id"
+      >
+        <span class="ms sm">{{ t.icon }}</span>
+        @if (tab() === t.id) {
+          <span class="tab-label">{{ t.label }}</span>
+        }
+        @if (t.id === 'guardrails' && tripCount()) {
+          <span class="badge">{{ tripCount() }}</span>
+        }
+      </button>
+    }
+  </nav>
+</header>
+
+<div class="content scroll">
+  @if (!turn()) {
+    <div class="empty">
+      <span class="ms">travel_explore</span>
+      <p>
+        Ask a question to see retrieved passages, guardrail decisions, quality scores, token usage
+        and a latency trace for every answer.
+      </p>
+    </div>
+  } @else {
+    @switch (tab()) {
+      <!-- SOURCES --------------------------------------------------------------- -->
+      @case ('sources') {
+        @if (turn()!.sources.length) {
+          <p class="hint">
+            Hybrid search: stemmed BM25 + dense vectors fused with RRF, then reordered by a
+            cross-encoder. Ranks show where each passage came from.
+          </p>
+          @for (s of turn()!.sources; track s.chunk.id; let i = $index) {
+            <div
+              class="source"
+              [id]="'src-' + (i + 1)"
+              [class.hl]="store.highlightedSource() === i + 1"
+            >
+              <div class="source-head" (click)="toggle(i)">
+                <span class="num">{{ i + 1 }}</span>
+                <span class="src-label">{{ label(s.chunk.metadata) }}</span>
+                <span class="ms sm caret">{{
+                  expanded().has(i) ? 'expand_less' : 'expand_more'
+                }}</span>
+              </div>
+              <div class="scores">
+                <span class="chip" matTooltip="Rank in the BM25 (stemmed keyword) list">
+                  BM25 {{ s.bm25_rank ? '#' + s.bm25_rank : '—' }}
+                </span>
+                <span class="chip" matTooltip="Rank in the dense embedding list">
+                  Dense {{ s.dense_rank ? '#' + s.dense_rank : '—' }}
+                </span>
+                <span class="chip" matTooltip="Reciprocal Rank Fusion score"
+                  >RRF {{ s.rrf_score | number: '1.4-4' }}</span
+                >
+              </div>
+              @if (s.rerank_score !== null) {
+                <div class="meter" matTooltip="Cross-encoder relevance (0–1)">
+                  <span class="meter-label">Rerank</span>
+                  <span class="meter-track"
+                    ><span class="meter-fill" [style.width.%]="s.rerank_score * 100"></span
+                  ></span>
+                  <span class="meter-val">{{ s.rerank_score | number: '1.2-2' }}</span>
+                </div>
+              }
+              @if (expanded().has(i)) {
+                <pre class="passage">{{ s.chunk.text }}</pre>
+              }
+            </div>
+          }
+        } @else {
+          <p class="muted">No passages were used for this answer.</p>
+        }
+        @if (turn()!.tools.length) {
+          <div class="eyebrow sub">Tool results</div>
+          @for (t of turn()!.tools; track $index) {
+            <details class="tool">
+              <summary><span class="ms sm">build</span>{{ t.name }}({{ t.argument }})</summary>
+              <markdown class="md" [data]="t.output ?? t.text ?? ''" />
+            </details>
+          }
+        }
+      }
+
+      <!-- GUARDRAILS ---------------------------------------------------------------- -->
+      @case ('guardrails') {
+        @for (group of guardGroups(); track group.stage) {
+          <div class="eyebrow sub">{{ group.stage }}</div>
+          @for (g of group.items; track $index) {
+            <div class="guard" [class]="g.action">
+              <span class="ms fill">{{ icon(g) }}</span>
+              <div class="guard-body">
+                <div class="guard-title">
+                  <strong>{{ pretty(g.name) }}</strong>
+                  <span class="chip" [class]="g.action">{{ g.action }}</span>
+                </div>
+                @if (g.detail) {
+                  <small>{{ g.detail }}</small>
+                }
+              </div>
+            </div>
+          }
+        } @empty {
+          <p class="muted">Guardrails run as the answer streams…</p>
+        }
+      }
+
+      <!-- EVALS ------------------------------------------------------------------------- -->
+      @case ('evals') {
+        @if (turn()!.evals; as e) {
+          <div class="gauges">
+            <app-gauge [value]="e.faithfulness" name="Faithfulness" />
+            <app-gauge [value]="e.answer_relevance" name="Answer relevance" />
+            <app-gauge [value]="e.context_precision" name="Context precision" />
+          </div>
+          <div class="meter">
+            <span class="meter-label">Citation coverage</span>
+            <span class="meter-track"
+              ><span class="meter-fill" [style.width.%]="e.citation_coverage * 100"></span
+            ></span>
+            <span class="meter-val">{{ e.citation_coverage * 100 | number: '1.0-0' }}%</span>
+          </div>
+          <div class="meter">
+            <span class="meter-label">Top retrieval</span>
+            <span class="meter-track"
+              ><span class="meter-fill" [style.width.%]="(e.top_retrieval_score ?? 0) * 100"></span
+            ></span>
+            <span class="meter-val">{{ e.top_retrieval_score ?? 0 | number: '1.2-2' }}</span>
+          </div>
+          <div class="kv">
+            <span>Valid citations</span><strong>{{ e.citations_valid }}</strong>
+          </div>
+          @if (e.rationale) {
+            <blockquote class="rationale">“{{ e.rationale }}”</blockquote>
+          }
+          <p class="hint">
+            Judged by <code>{{ e.judge_model }}</code> after the answer streamed (RAG triad), so it
+            never adds latency to the response. Faithfulness &lt; 0.5 raises a groundedness flag.
+          </p>
+        } @else if (turn()!.streaming) {
+          <p class="muted">The judge scores the answer once it finishes streaming…</p>
+        } @else {
+          <p class="muted">No evaluation for this turn (blocked, abstained, or no passages).</p>
+        }
+      }
+
+      <!-- USAGE --------------------------------------------------------------------------- -->
+      @case ('usage') {
+        @if (turn()!.usage; as u) {
+          <div class="stats">
+            <div class="stat">
+              <small>Input tokens</small><strong>{{ u.totals.input_tokens | number }}</strong>
+            </div>
+            <div class="stat">
+              <small>Output tokens</small><strong>{{ u.totals.output_tokens | number }}</strong>
+            </div>
+            <div class="stat">
+              <small>Cache reads</small><strong>{{ u.totals.cache_read_tokens | number }}</strong>
+            </div>
+            <div class="stat">
+              <small>Est. cost</small><strong>\${{ u.totals.cost_usd | number: '1.4-4' }}</strong>
+            </div>
+          </div>
+          <div class="eyebrow sub">LLM calls</div>
+          <table class="calls">
+            <thead>
+              <tr>
+                <th>Purpose</th>
+                <th>Model</th>
+                <th>In</th>
+                <th>Out</th>
+                <th>ms</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (c of u.calls; track $index) {
+                <tr>
+                  <td>{{ pretty(c.purpose) }}</td>
+                  <td class="mono model" [matTooltip]="c.model">{{ c.model.split('/').pop() }}</td>
+                  <td>{{ c.usage.input_tokens | number }}</td>
+                  <td>{{ c.usage.output_tokens | number }}</td>
+                  <td>{{ c.latency_ms | number: '1.0-0' }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+          <p class="hint">
+            Cheap calls (planner, judge, classifier, memory summary) run on a fast tier; only the
+            answer uses the selected model. Cache reads appear once a prompt exceeds the model's
+            minimum cacheable length.
+          </p>
+        } @else {
+          <p class="muted">Usage is reported when the turn completes.</p>
+        }
+      }
+
+      <!-- TRACE ---------------------------------------------------------------------------- -->
+      @case ('trace') {
+        @if (waterfall().length) {
+          <div class="kv">
+            <span>Total graph time</span><strong>{{ totalMs() / 1000 | number: '1.2-2' }} s</strong>
+          </div>
+          <div class="waterfall">
+            @for (row of waterfall(); track row.node) {
+              <div class="wf-row">
+                <span class="wf-label">{{ row.label }}</span>
+                <span class="wf-track">
+                  <span class="wf-bar" [style.left.%]="row.left" [style.width.%]="row.width"></span>
+                </span>
+                <span class="wf-ms">{{ row.ms | number: '1.0-0' }} ms</span>
+              </div>
+            }
+          </div>
+        }
+        <div class="eyebrow sub">Run details</div>
+        <div class="kv">
+          <span>Agent</span><strong>{{ turn()!.agent }}</strong>
+        </div>
+        <div class="kv">
+          <span>Provider / model</span
+          ><strong class="mono">{{ turn()!.provider }} · {{ turn()!.model }}</strong>
+        </div>
+        <div class="kv">
+          <span>Search query</span><strong>{{ turn()!.search_query || turn()!.question }}</strong>
+        </div>
+        <div class="kv">
+          <span>Tools</span><strong>{{ turn()!.tools.length ? '' : 'none' }}</strong>
+        </div>
+        @for (t of turn()!.tools; track $index) {
+          <div class="kv indent">
+            <span class="mono">{{ t.name }}</span
+            ><strong>{{ t.argument }}</strong>
+          </div>
+        }
+      }
+    }
+  }
+</div>

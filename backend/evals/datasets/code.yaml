@@ -1,0 +1,34 @@
+# Code agent questions about this repository (self-ingested). expected_sources are paths
+# relative to the repo root, matched against chunk metadata `path`.
+agent: code
+cases:
+  - id: code-01
+    category: factual
+    question: How does the hybrid retriever combine BM25 and vector search?
+    expected_sources: [backend/app/core/retrieval/retriever.py, backend/app/core/retrieval/fusion.py]
+    must_include: ["fusion"]
+  - id: code-02
+    category: factual
+    question: Where is role-based access control defined?
+    expected_sources: [backend/app/core/security/policy.py]
+    must_include: ["staff"]
+  - id: code-03
+    category: factual
+    question: How are clinical abbreviations protected from stemming?
+    expected_sources: [backend/app/core/retrieval/analyzer.py]
+    must_include: ["abbreviation"]
+  - id: code-04
+    category: factual
+    question: How does the transcript chunker avoid splitting speaker turns?
+    expected_sources: [backend/app/core/ingestion/chunkers.py]
+    must_include: ["turn"]
+  - id: code-05
+    category: factual
+    question: Where is PII redacted from streamed tokens?
+    expected_sources: [backend/app/graph/events.py]
+    must_include: ["StreamRedactor"]
+  - id: code-06
+    category: factual
+    question: How is the online judge scoring faithfulness?
+    expected_sources: [backend/app/core/evals/online.py]
+    must_include: ["faithfulness"]

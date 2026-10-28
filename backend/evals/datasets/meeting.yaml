@@ -1,0 +1,41 @@
+agent: meeting
+cases:
+  - id: meet-01
+    category: factual
+    question: What eGFR threshold did the steering committee agree for the renal sub-study?
+    expected_sources: [trial-steering-committee-2026-09-14.txt]
+    must_include: ["30"]
+  - id: meet-02
+    category: factual
+    question: Who owns the protocol amendment and when is it due?
+    expected_sources: [trial-steering-committee-2026-09-14.txt]
+    must_include: ["Mark", "26"]
+  - id: meet-03
+    category: factual
+    question: Why was the skip confirmation dialog rejected in the CarePath sprint review?
+    expected_sources: [digital-health-sprint-review-2026-10-02.txt]
+    must_include: ["undo"]
+  - id: meet-04
+    category: factual
+    question: What was decided about the glucose meter integration?
+    expected_sources: [digital-health-sprint-review-2026-10-02.txt]
+    must_include: ["feature flag"]
+  - id: meet-05
+    category: factual
+    question: Was the atorvastatin muscle symptom cluster confirmed as a new signal?
+    expected_sources: [pharmacovigilance-signal-review-2026-10-20.txt]
+    must_include: ["not"]
+  - id: meet-06
+    category: factual
+    question: Which supplement was linked to elevated INR in warfarin patients?
+    expected_sources: [pharmacovigilance-signal-review-2026-10-20.txt]
+    must_include: ["dong quai"]
+  - id: meet-07
+    category: factual
+    question: How many participants have been enrolled in GLYCO-2?
+    expected_sources: [trial-steering-committee-2026-09-14.txt]
+    must_include: ["412"]
+  - id: meet-08
+    category: out_of_scope
+    question: What did the board decide about the Q3 marketing budget?
+    expect_abstain: true

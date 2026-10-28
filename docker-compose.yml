@@ -1,0 +1,27 @@
+# Local run of the production image:   docker compose up --build   ->  http://localhost:7860
+# Optional local open-weight model:     docker compose --profile ollama up --build
+#   then set OPENWEIGHT_BASE_URL=http://ollama:11434/v1, OPENWEIGHT_MODEL=qwen2.5:7b, HF_TOKEN=ollama
+services:
+  atlas:
+    build: .
+    ports:
+      - "7860:7860"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      ENV: ${ENV:-dev}
+    volumes:
+      - atlas-data:/data
+
+  ollama:
+    image: ollama/ollama:0.12.6
+    profiles: ["ollama"]
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
+
+volumes:
+  atlas-data:
+  ollama:

@@ -1,0 +1,24 @@
+[00:00:03] Sara Mendes: Welcome to the sprint 14 review for the CarePath patient app. We'll go through the demo, the metrics, and decide what goes into the November release.
+[00:00:18] Vikram Iyer: Demo first. The medication reminder flow is done end to end. Patients get a push notification, can mark a dose as taken or skipped, and the adherence chart updates in real time.
+[00:00:40] Sara Mendes: How did the usability test go?
+[00:00:44] Lena Fischer: We tested with eight patients over 60. Seven completed the reminder flow without help. The one failure was the snooze button, it's too small and too close to "skip". Two people skipped a dose by accident.
+[00:01:05] Vikram Iyer: That's an easy fix, we can enlarge it and add a confirmation for skip.
+[00:01:12] Sara Mendes: Let's not add a confirmation dialog, it adds friction for every dose. Make the buttons bigger and separate them, and add an undo for five seconds.
+[00:01:25] Lena Fischer: Undo is the better pattern, agreed.
+[00:01:30] Sara Mendes: Decision: replace the skip confirmation idea with a five-second undo and larger, separated buttons. Vikram, can you take that?
+[00:01:37] Vikram Iyer: Yes, I'll have it done by Wednesday the 8th.
+[00:01:50] Sara Mendes: Metrics next. Tom?
+[00:01:53] Tom Becker: Weekly active users went from 1,840 to 2,310. Seven-day retention is 46 percent, up from 39. Crash-free sessions are at 99.2 percent, but Android 12 accounts for most crashes, all in the Bluetooth glucose meter pairing.
+[00:02:20] Vikram Iyer: The pairing crash is a known issue in the vendor SDK. They've promised a fix in their 3.4 release, end of October.
+[00:02:32] Sara Mendes: Can we ship the glucose meter integration in November if the vendor slips?
+[00:02:38] Tom Becker: I'd rather not. If pairing crashes, people lose readings and lose trust. My recommendation is to put the glucose meter integration behind a feature flag and only enable it once the vendor fix is verified.
+[00:02:55] Sara Mendes: Agreed. Decision: glucose meter integration ships dark behind a feature flag in November and is enabled only after the vendor SDK 3.4 fix is verified on Android 12.
+[00:03:10] Tom Becker: I'll set up the feature flag and the Android 12 regression test suite.
+[00:03:20] Lena Fischer: One more thing from research. Several patients asked to share their adherence data with a caregiver, usually an adult child.
+[00:03:32] Sara Mendes: That has privacy implications. We'd need explicit consent and the ability to revoke it.
+[00:03:40] Lena Fischer: Yes. I'd propose we don't build it this quarter but run a discovery spike on consent flows.
+[00:03:48] Sara Mendes: Okay, caregiver sharing is out of scope for November. Lena, please write a one-page discovery brief on consent and caregiver sharing by October 20th, and loop in the privacy officer.
+[00:04:02] Lena Fischer: Will do.
+[00:04:05] Sara Mendes: Last item, the release date. Are we confident in November 18th?
+[00:04:10] Tom Becker: Yes, with the glucose meter behind a flag, nothing else is risky.
+[00:04:15] Sara Mendes: Decision: November 18th release date confirmed. Thanks everyone.

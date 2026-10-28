@@ -1,0 +1,35 @@
+name: Deploy to Hugging Face Space
+
+# Manual (or on main after CI). The Space builds the Dockerfile itself.
+# Repo secrets:   HF_TOKEN (write access)      Repo variables:   HF_SPACE (e.g. user/atlas)
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+
+jobs:
+  deploy:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    environment: huggingface
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Upload to Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_SPACE: ${{ vars.HF_SPACE }}
+        working-directory: backend
+        run: uv run --no-project --with huggingface_hub python scripts/deploy_hf.py
+      - name: Smoke test
+        env:
+          HF_SPACE: ${{ vars.HF_SPACE }}
+        run: |
+          url="https://$(echo "$HF_SPACE" | tr '/' '-' | tr '[:upper:]' '[:lower:]').hf.space/health"
+          for i in $(seq 1 40); do
+            if curl -fsS "$url"; then exit 0; fi
+            sleep 30
+          done
+          echo "Space did not become healthy at $url" && exit 1

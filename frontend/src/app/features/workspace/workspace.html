@@ -1,0 +1,140 @@
+<div class="shell" [class.with-inspector]="inspectorOpen()">
+  <app-sidebar />
+
+  <main>
+    <header class="topbar">
+      <div class="agent">
+        <span class="ms fill agent-icon">{{ store.agentInfo()?.icon }}</span>
+        <div>
+          <h1>{{ store.agentInfo()?.title ?? 'Atlas' }}</h1>
+          <p>{{ store.agentInfo()?.description }}</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="segmented" role="radiogroup" aria-label="LLM provider">
+          @for (p of store.config()?.providers ?? []; track p.key) {
+            <button
+              [class.active]="store.provider() === p.key"
+              [disabled]="!p.available || store.busy()"
+              (click)="store.selectProvider(p.key)"
+              [matTooltip]="p.available ? p.label : p.label + ' - no API key configured'"
+            >
+              <span class="ms sm">{{
+                p.key === 'claude' ? 'auto_awesome' : p.key === 'open' ? 'lock_open' : 'science'
+              }}</span>
+              {{ p.key === 'claude' ? 'Claude' : p.key === 'open' ? 'Open-weight' : 'Demo' }}
+            </button>
+          }
+        </div>
+        @if (modelOptions().length > 1) {
+          <select
+            class="field model"
+            [ngModel]="store.model()"
+            (ngModelChange)="store.model.set($event)"
+            [disabled]="store.busy()"
+            aria-label="Model"
+          >
+            @for (m of modelOptions(); track m) {
+              <option [value]="m">{{ m.split('/').pop() }}</option>
+            }
+          </select>
+        }
+        <button class="btn" (click)="knowledgeOpen.set(true)">
+          <span class="ms sm">database</span> Knowledge
+        </button>
+        <button
+          class="btn icon"
+          (click)="inspectorOpen.set(!inspectorOpen())"
+          [matTooltip]="inspectorOpen() ? 'Hide inspector' : 'Show inspector'"
+        >
+          <span class="ms">{{ inspectorOpen() ? 'right_panel_close' : 'right_panel_open' }}</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="thread scroll" #thread>
+      <div class="column">
+        @if (loadError()) {
+          <div class="banner"><span class="ms">cloud_off</span>{{ loadError() }}</div>
+        }
+        @if (!store.turns().length) {
+          <div class="welcome">
+            <div class="hero-icon">
+              <span class="ms fill">{{ store.agentInfo()?.icon }}</span>
+            </div>
+            <h2>Ask {{ store.agentInfo()?.title }}</h2>
+            <p>
+              Answers are grounded in the knowledge base with numbered citations. Every response is
+              checked by guardrails and scored by an LLM judge — open the Inspector to see why.
+            </p>
+            <div class="examples">
+              @for (q of store.agentInfo()?.examples ?? []; track q) {
+                <button class="example" (click)="send(q)">
+                  <span class="ms sm">north_east</span>{{ q }}
+                </button>
+              }
+            </div>
+            <div class="facts">
+              <span class="chip"><span class="ms sm">join_inner</span>BM25 + dense + RRF</span>
+              <span class="chip"
+                ><span class="ms sm">sort</span
+                >{{
+                  store.config()?.retrieval?.reranker_model?.split('/')?.pop() ?? 'no reranker'
+                }}</span
+              >
+              <span class="chip"><span class="ms sm">memory</span>session memory</span>
+              <span class="chip"><span class="ms sm">shield</span>guardrails</span>
+            </div>
+          </div>
+        }
+        @for (turn of store.turns(); track $index; let i = $index) {
+          <app-answer
+            [turn]="turn"
+            [selected]="inspectorOpen() && selectedIndex() === i"
+            (select)="store.selectedTurn.set(i)"
+            (inspect)="openInspector(i)"
+            (cite)="onCite(i, $event)"
+          />
+        }
+      </div>
+    </section>
+
+    <footer class="composer-wrap">
+      <div class="composer">
+        <textarea
+          rows="1"
+          [(ngModel)]="draft"
+          (keydown)="onKey($event)"
+          [placeholder]="'Message ' + (store.agentInfo()?.title ?? 'Atlas') + '…'"
+        ></textarea>
+        @if (store.busy()) {
+          <button class="btn icon stop" (click)="store.stop()" matTooltip="Stop">
+            <span class="ms fill">stop_circle</span>
+          </button>
+        } @else {
+          <button
+            class="btn primary icon send"
+            (click)="send()"
+            [disabled]="!draft.trim()"
+            aria-label="Send"
+          >
+            <span class="ms">arrow_upward</span>
+          </button>
+        }
+      </div>
+      <small class="disclaimer">
+        {{ store.providerInfo()?.label }} · {{ store.model().split('/').pop() }} · Answers can be
+        wrong — check the cited sources.
+      </small>
+    </footer>
+  </main>
+
+  @if (inspectorOpen()) {
+    <app-inspector [(tab)]="inspectorTab" />
+  }
+</div>
+
+@if (knowledgeOpen()) {
+  <app-knowledge (close)="knowledgeOpen.set(false)" />
+}

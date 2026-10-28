@@ -1,0 +1,171 @@
+<div class="page">
+  <header>
+    <a class="btn ghost" routerLink="/"><span class="ms sm">arrow_back</span> Workspace</a>
+    <div>
+      <div class="eyebrow">Admin</div>
+      <h1>Offline evaluation reports</h1>
+      <p>
+        Produced by <code>python -m evals.run retrieval</code> (retrieval ablation, no LLM) and
+        <code>python -m evals.run e2e</code> (full graph with quality gates). The same harness runs
+        in CI.
+      </p>
+    </div>
+  </header>
+
+  @if (loading()) {
+    <p class="muted">Loading…</p>
+  } @else if (!reports().length) {
+    <div class="empty">
+      <span class="ms">monitoring</span>
+      <p>
+        No reports yet. Run <code>make eval-retrieval</code> or <code>make eval</code> in
+        <code>backend/</code>.
+      </p>
+    </div>
+  } @else {
+    <div class="layout">
+      <nav class="runs">
+        @for (r of reports(); track r['id']) {
+          <button
+            class="run"
+            [class.active]="selected()?.['id'] === r['id']"
+            (click)="selectedId.set(r['id'])"
+          >
+            <span
+              class="chip"
+              [class.accent]="r['kind'] === 'retrieval'"
+              [class.pass]="r['kind'] === 'e2e' && r['passed']"
+              [class.block]="r['kind'] === 'e2e' && !r['passed']"
+            >
+              {{
+                r['kind'] === 'retrieval'
+                  ? 'retrieval'
+                  : r['passed']
+                    ? 'e2e · passed'
+                    : 'e2e · failed'
+              }}
+            </span>
+            <span class="run-title">{{
+              r['kind'] === 'retrieval'
+                ? r['reranker_model'].split('/').pop()
+                : r['agent'] + ' · ' + r['model'].split('/').pop()
+            }}</span>
+            <small>{{ r['created_at'] }}</small>
+          </button>
+        }
+      </nav>
+
+      <section class="detail">
+        @if (selected(); as r) {
+          @if (r['kind'] === 'retrieval') {
+            <div class="meta">
+              <span class="chip">embedding · {{ r['embedding_model'] }}</span>
+              <span class="chip">reranker · {{ r['reranker_model'] }}</span>
+              <span class="chip">top-k · {{ r['top_k'] }}</span>
+            </div>
+            <p class="muted">
+              <strong>Doc hit</strong>: the right document appears in the results.
+              <strong>Passage hit</strong>: the retrieved chunk itself contains the expected answer
+              text — the stricter, more useful signal for RAG.
+            </p>
+            @for (entry of r['agents'] | keyvalue; track entry.key) {
+              <div class="card">
+                <h3>
+                  {{ entry.key }} <small>{{ entry.value['n'] }} questions</small>
+                </h3>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Mode</th>
+                      <th>Doc hit@1</th>
+                      <th>Passage hit@1</th>
+                      <th class="bar-col"></th>
+                      <th>Passage MRR</th>
+                      <th>p50 latency</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (row of modes(entry.value); track row.mode) {
+                      <tr
+                        [class.best]="row.m['passage_hit@1'] === best(entry.value, 'passage_hit@1')"
+                      >
+                        <td>{{ modeLabels[row.mode] ?? row.mode }}</td>
+                        <td>{{ pct(row.m['hit@1']) }}</td>
+                        <td>
+                          <strong>{{ pct(row.m['passage_hit@1']) }}</strong>
+                        </td>
+                        <td class="bar-col">
+                          <span class="bar"
+                            ><span [style.width.%]="row.m['passage_hit@1'] * 100"></span
+                          ></span>
+                        </td>
+                        <td>{{ row.m['passage_mrr'] | number: '1.2-2' }}</td>
+                        <td>{{ row.m['latency_ms_p50'] | number: '1.0-0' }} ms</td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            }
+          } @else {
+            <div class="meta">
+              <span class="chip">agent · {{ r['agent'] }}</span>
+              <span class="chip">model · {{ r['model'] }}</span>
+              <span class="chip" [class.pass]="r['passed']" [class.block]="!r['passed']">
+                {{ r['passed'] ? 'all gates passed' : 'gate failed' }}
+              </span>
+            </div>
+            <div class="tiles">
+              @for (tile of summary(r); track tile.key) {
+                <div class="tile" [class.fail]="tile.failed">
+                  <small>{{ tile.label }}</small>
+                  <strong>{{ tile.display }}</strong>
+                </div>
+              }
+            </div>
+            <div class="card">
+              <h3>Cases</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Category</th>
+                    <th>Question</th>
+                    <th>Retrieved</th>
+                    <th>Correct / safe</th>
+                    <th>Faithful</th>
+                    <th>Latency</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (c of r['cases']; track c['id']) {
+                    <tr>
+                      <td class="mono">{{ c['id'] }}</td>
+                      <td>
+                        <span class="chip">{{ c['category'] }}</span>
+                      </td>
+                      <td class="q">{{ c['question'] }}</td>
+                      <td>
+                        {{
+                          c['retrieval_hit'] === undefined ? '–' : c['retrieval_hit'] ? '✓' : '✗'
+                        }}
+                      </td>
+                      <td>
+                        @let ok = c['answer_correct'] ?? c['safety_pass'];
+                        <span class="chip" [class.pass]="ok" [class.block]="ok === false">{{
+                          ok === undefined ? '–' : ok ? 'pass' : 'fail'
+                        }}</span>
+                      </td>
+                      <td>{{ pct(c['faithfulness']) }}</td>
+                      <td>{{ c['latency_ms'] }} ms</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          }
+        }
+      </section>
+    </div>
+  }
+</div>

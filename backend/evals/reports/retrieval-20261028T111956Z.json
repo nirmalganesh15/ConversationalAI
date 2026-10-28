@@ -1,0 +1,1198 @@
+{
+  "id": "retrieval-20261028T111956Z",
+  "created_at": "20261028T111956Z",
+  "kind": "retrieval",
+  "top_k": 6,
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "reranker_model": "BAAI/bge-reranker-base",
+  "agents": {
+    "docs": {
+      "n": 23,
+      "modes": {
+        "dense": {
+          "hit@1": 1.0,
+          "hit@6": 1.0,
+          "passage_hit@1": 0.957,
+          "passage_hit@6": 1.0,
+          "passage_mrr": 0.964,
+          "latency_ms_p50": 13.9,
+          "cases": [
+            {
+              "id": "docs-01",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-02",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-03",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-04",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-05",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-06",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-07",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-08",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-09",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-10",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-11",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-12",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-13",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-14",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-15",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-16",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-17",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 6
+            },
+            {
+              "id": "docs-18",
+              "category": "paraphrase",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-19",
+              "category": "paraphrase",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-20",
+              "category": "paraphrase",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-21",
+              "category": "abbreviation",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-22",
+              "category": "abbreviation",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-23",
+              "category": "abbreviation",
+              "doc_rank": 1,
+              "passage_rank": 1
+            }
+          ]
+        },
+        "bm25": {
+          "hit@1": 0.87,
+          "hit@6": 0.957,
+          "passage_hit@1": 0.783,
+          "passage_hit@6": 0.957,
+          "passage_mrr": 0.833,
+          "latency_ms_p50": 0.8,
+          "cases": [
+            {
+              "id": "docs-01",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-02",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-03",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-04",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-05",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-06",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-07",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-08",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 4
+            },
+            {
+              "id": "docs-09",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-10",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-11",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-12",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-13",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-14",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-15",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-16",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-17",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 2
+            },
+            {
+              "id": "docs-18",
+              "category": "paraphrase",
+              "doc_rank": 5,
+              "passage_rank": 5
+            },
+            {
+              "id": "docs-19",
+              "category": "paraphrase",
+              "doc_rank": 5,
+              "passage_rank": 5
+            },
+            {
+              "id": "docs-20",
+              "category": "paraphrase",
+              "doc_rank": null,
+              "passage_rank": null
+            },
+            {
+              "id": "docs-21",
+              "category": "abbreviation",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-22",
+              "category": "abbreviation",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-23",
+              "category": "abbreviation",
+              "doc_rank": 1,
+              "passage_rank": 1
+            }
+          ]
+        },
+        "hybrid": {
+          "hit@1": 0.913,
+          "hit@6": 1.0,
+          "passage_hit@1": 0.826,
+          "passage_hit@6": 1.0,
+          "passage_mrr": 0.884,
+          "latency_ms_p50": 14.1,
+          "cases": [
+            {
+              "id": "docs-01",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-02",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-03",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-04",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 2
+            },
+            {
+              "id": "docs-05",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-06",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-07",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-08",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-09",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-10",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-11",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-12",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-13",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-14",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-15",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-16",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-17",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 4
+            },
+            {
+              "id": "docs-18",
+              "category": "paraphrase",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-19",
+              "category": "paraphrase",
+              "doc_rank": 2,
+              "passage_rank": 3
+            },
+            {
+              "id": "docs-20",
+              "category": "paraphrase",
+              "doc_rank": 4,
+              "passage_rank": 4
+            },
+            {
+              "id": "docs-21",
+              "category": "abbreviation",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-22",
+              "category": "abbreviation",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-23",
+              "category": "abbreviation",
+              "doc_rank": 1,
+              "passage_rank": 1
+            }
+          ]
+        },
+        "hybrid_rerank": {
+          "hit@1": 0.957,
+          "hit@6": 1.0,
+          "passage_hit@1": 0.87,
+          "passage_hit@6": 1.0,
+          "passage_mrr": 0.913,
+          "latency_ms_p50": 4599.6,
+          "cases": [
+            {
+              "id": "docs-01",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-02",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-03",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-04",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 3
+            },
+            {
+              "id": "docs-05",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-06",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-07",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-08",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-09",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-10",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-11",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-12",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-13",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-14",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-15",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-16",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-17",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 3
+            },
+            {
+              "id": "docs-18",
+              "category": "paraphrase",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-19",
+              "category": "paraphrase",
+              "doc_rank": 2,
+              "passage_rank": 3
+            },
+            {
+              "id": "docs-20",
+              "category": "paraphrase",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-21",
+              "category": "abbreviation",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-22",
+              "category": "abbreviation",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "docs-23",
+              "category": "abbreviation",
+              "doc_rank": 1,
+              "passage_rank": 1
+            }
+          ]
+        }
+      }
+    },
+    "code": {
+      "n": 6,
+      "modes": {
+        "dense": {
+          "hit@1": 0.833,
+          "hit@6": 1.0,
+          "passage_hit@1": 0.667,
+          "passage_hit@6": 1.0,
+          "passage_mrr": 0.833,
+          "latency_ms_p50": 17.1,
+          "cases": [
+            {
+              "id": "code-01",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "code-02",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 2
+            },
+            {
+              "id": "code-03",
+              "category": "factual",
+              "doc_rank": 2,
+              "passage_rank": 2
+            },
+            {
+              "id": "code-04",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "code-05",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "code-06",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            }
+          ]
+        },
+        "bm25": {
+          "hit@1": 0.5,
+          "hit@6": 1.0,
+          "passage_hit@1": 0.333,
+          "passage_hit@6": 0.833,
+          "passage_mrr": 0.528,
+          "latency_ms_p50": 1.5,
+          "cases": [
+            {
+              "id": "code-01",
+              "category": "factual",
+              "doc_rank": 2,
+              "passage_rank": 2
+            },
+            {
+              "id": "code-02",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": null
+            },
+            {
+              "id": "code-03",
+              "category": "factual",
+              "doc_rank": 3,
+              "passage_rank": 3
+            },
+            {
+              "id": "code-04",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "code-05",
+              "category": "factual",
+              "doc_rank": 3,
+              "passage_rank": 3
+            },
+            {
+              "id": "code-06",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            }
+          ]
+        },
+        "hybrid": {
+          "hit@1": 0.833,
+          "hit@6": 1.0,
+          "passage_hit@1": 0.667,
+          "passage_hit@6": 0.833,
+          "passage_mrr": 0.75,
+          "latency_ms_p50": 18.6,
+          "cases": [
+            {
+              "id": "code-01",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "code-02",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": null
+            },
+            {
+              "id": "code-03",
+              "category": "factual",
+              "doc_rank": 2,
+              "passage_rank": 2
+            },
+            {
+              "id": "code-04",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "code-05",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "code-06",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            }
+          ]
+        },
+        "hybrid_rerank": {
+          "hit@1": 0.833,
+          "hit@6": 1.0,
+          "passage_hit@1": 0.667,
+          "passage_hit@6": 0.833,
+          "passage_mrr": 0.75,
+          "latency_ms_p50": 4261.3,
+          "cases": [
+            {
+              "id": "code-01",
+              "category": "factual",
+              "doc_rank": 2,
+              "passage_rank": 2
+            },
+            {
+              "id": "code-02",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": null
+            },
+            {
+              "id": "code-03",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "code-04",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "code-05",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "code-06",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            }
+          ]
+        }
+      }
+    },
+    "meeting": {
+      "n": 7,
+      "modes": {
+        "dense": {
+          "hit@1": 1.0,
+          "hit@6": 1.0,
+          "passage_hit@1": 1.0,
+          "passage_hit@6": 1.0,
+          "passage_mrr": 1.0,
+          "latency_ms_p50": 15.9,
+          "cases": [
+            {
+              "id": "meet-01",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-02",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-03",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-04",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-05",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-06",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-07",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            }
+          ]
+        },
+        "bm25": {
+          "hit@1": 1.0,
+          "hit@6": 1.0,
+          "passage_hit@1": 0.857,
+          "passage_hit@6": 1.0,
+          "passage_mrr": 0.929,
+          "latency_ms_p50": 1.0,
+          "cases": [
+            {
+              "id": "meet-01",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-02",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-03",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-04",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 2
+            },
+            {
+              "id": "meet-05",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-06",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-07",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            }
+          ]
+        },
+        "hybrid": {
+          "hit@1": 1.0,
+          "hit@6": 1.0,
+          "passage_hit@1": 0.857,
+          "passage_hit@6": 1.0,
+          "passage_mrr": 0.929,
+          "latency_ms_p50": 15.5,
+          "cases": [
+            {
+              "id": "meet-01",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-02",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-03",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-04",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 2
+            },
+            {
+              "id": "meet-05",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-06",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-07",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            }
+          ]
+        },
+        "hybrid_rerank": {
+          "hit@1": 1.0,
+          "hit@6": 1.0,
+          "passage_hit@1": 1.0,
+          "passage_hit@6": 1.0,
+          "passage_mrr": 1.0,
+          "latency_ms_p50": 1145.9,
+          "cases": [
+            {
+              "id": "meet-01",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-02",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-03",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-04",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-05",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-06",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "meet-07",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            }
+          ]
+        }
+      }
+    },
+    "career": {
+      "n": 6,
+      "modes": {
+        "dense": {
+          "hit@1": 0.833,
+          "hit@6": 1.0,
+          "passage_hit@1": 0.5,
+          "passage_hit@6": 1.0,
+          "passage_mrr": 0.644,
+          "latency_ms_p50": 15.3,
+          "cases": [
+            {
+              "id": "career-01",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "career-02",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "career-03",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 3
+            },
+            {
+              "id": "career-04",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 3
+            },
+            {
+              "id": "career-05",
+              "category": "factual",
+              "doc_rank": 4,
+              "passage_rank": 5
+            },
+            {
+              "id": "career-06",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            }
+          ]
+        },
+        "bm25": {
+          "hit@1": 1.0,
+          "hit@6": 1.0,
+          "passage_hit@1": 0.167,
+          "passage_hit@6": 1.0,
+          "passage_mrr": 0.389,
+          "latency_ms_p50": 0.8,
+          "cases": [
+            {
+              "id": "career-01",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 4
+            },
+            {
+              "id": "career-02",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 6
+            },
+            {
+              "id": "career-03",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 3
+            },
+            {
+              "id": "career-04",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 4
+            },
+            {
+              "id": "career-05",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 3
+            },
+            {
+              "id": "career-06",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            }
+          ]
+        },
+        "hybrid": {
+          "hit@1": 0.667,
+          "hit@6": 1.0,
+          "passage_hit@1": 0.167,
+          "passage_hit@6": 1.0,
+          "passage_mrr": 0.428,
+          "latency_ms_p50": 14.6,
+          "cases": [
+            {
+              "id": "career-01",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 2
+            },
+            {
+              "id": "career-02",
+              "category": "factual",
+              "doc_rank": 4,
+              "passage_rank": 5
+            },
+            {
+              "id": "career-03",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 3
+            },
+            {
+              "id": "career-04",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 3
+            },
+            {
+              "id": "career-05",
+              "category": "factual",
+              "doc_rank": 2,
+              "passage_rank": 5
+            },
+            {
+              "id": "career-06",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            }
+          ]
+        },
+        "hybrid_rerank": {
+          "hit@1": 0.833,
+          "hit@6": 1.0,
+          "passage_hit@1": 0.5,
+          "passage_hit@6": 0.833,
+          "passage_mrr": 0.611,
+          "latency_ms_p50": 2889.3,
+          "cases": [
+            {
+              "id": "career-01",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "career-02",
+              "category": "factual",
+              "doc_rank": 3,
+              "passage_rank": 3
+            },
+            {
+              "id": "career-03",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 3
+            },
+            {
+              "id": "career-04",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": null
+            },
+            {
+              "id": "career-05",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            },
+            {
+              "id": "career-06",
+              "category": "factual",
+              "doc_rank": 1,
+              "passage_rank": 1
+            }
+          ]
+        }
+      }
+    }
+  }
+}

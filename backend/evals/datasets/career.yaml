@@ -1,0 +1,32 @@
+agent: career
+cases:
+  - id: career-01
+    category: factual
+    question: Does the Forward Deployed Engineer role require Kubernetes experience?
+    expected_sources: [jd-1-forward-deployed-engineer-newpage.md]
+    must_include: ["Kubernetes"]
+  - id: career-02
+    category: factual
+    question: What vector databases has the candidate used?
+    expected_sources: [resume-arjun-mehta.md]
+    must_include: ["pgvector"]
+  - id: career-03
+    category: factual
+    question: Which clinical data standards does the Helix data engineer role ask for?
+    expected_sources: [jd-2-healthcare-data-engineer.md]
+    must_include: ["SDTM"]
+  - id: career-04
+    category: factual
+    question: What model serving tools does the Lumen Bio ML role mention?
+    expected_sources: [jd-3-ml-engineer-life-sciences.md]
+    must_include: ["vLLM"]
+  - id: career-05
+    category: factual
+    question: How many years of experience does the candidate have?
+    expected_sources: [resume-arjun-mehta.md]
+    must_include: ["8"]
+  - id: career-06
+    category: factual
+    question: What agent orchestration frameworks does the FDE role list?
+    expected_sources: [jd-1-forward-deployed-engineer-newpage.md]
+    must_include: ["LangGraph"]

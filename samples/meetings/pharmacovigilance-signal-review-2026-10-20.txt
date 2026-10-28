@@ -1,0 +1,20 @@
+[00:00:05] Dr. Helen Park: This is the monthly pharmacovigilance signal review. We have one new signal to assess, the atorvastatin and muscle symptoms cluster, and an update on the warfarin interaction cases.
+[00:00:20] Rahul Verma: For atorvastatin, we received 23 spontaneous reports this month mentioning myalgia or muscle weakness, compared with a monthly average of 9 over the past year. Four of them mention elevated CK, and one was reported as rhabdomyolysis.
+[00:00:48] Dr. Helen Park: Is the increase real or a reporting artifact?
+[00:00:52] Rahul Verma: Partly artifact. Fourteen of the 23 came from a single patient support program that started actively asking about muscle symptoms in September. Excluding that program, we're at 9, which is baseline.
+[00:01:12] Dr. Fatima Noor: But the rhabdomyolysis case deserves a closer look regardless. Do we know the dose and the concomitant medications?
+[00:01:20] Rahul Verma: 80 milligrams daily, and the patient had started clarithromycin five days before onset.
+[00:01:28] Dr. Fatima Noor: That's consistent with the known CYP3A4 interaction already described in the label. Clarithromycin raises atorvastatin exposure. It's an expected event, not a new signal.
+[00:01:42] Dr. Helen Park: So the conclusion is that the cluster is mostly driven by stimulated reporting, and the serious case is explained by a labeled interaction.
+[00:01:52] Dr. Fatima Noor: Yes. I'd still recommend we keep monitoring for three more months and separate the support-program reports in our dashboard so they don't distort the baseline.
+[00:02:05] Dr. Helen Park: Decision: atorvastatin muscle-symptom cluster is not confirmed as a new signal; continue routine monitoring for three months and stratify reports by source. Rahul, can you change the dashboard?
+[00:02:16] Rahul Verma: Yes, I'll add the source stratification to the signal dashboard by November 3rd.
+[00:02:25] Dr. Fatima Noor: And I'll write the case assessment for the rhabdomyolysis report for the periodic safety update, by the end of this month.
+[00:02:40] Dr. Helen Park: Now warfarin. Where are we on the interaction cases?
+[00:02:44] Rahul Verma: We've had five reports of elevated INR in patients who started an over-the-counter herbal supplement containing dong quai. Two had minor bleeding, none serious.
+[00:03:00] Dr. Fatima Noor: Herbal products are a well-known blind spot. The label already warns that botanicals can affect INR, but patients don't think of supplements as medicines.
+[00:03:12] Dr. Helen Park: Should we escalate this?
+[00:03:15] Dr. Fatima Noor: Not as a label change. But a patient-facing communication would help, something pharmacies can hand out with warfarin prescriptions about checking with a pharmacist before starting any supplement.
+[00:03:30] Dr. Helen Park: Decision: no regulatory escalation; we will develop a patient leaflet on supplements and warfarin for pharmacy distribution. Fatima, can you own the content with medical affairs?
+[00:03:42] Dr. Fatima Noor: Yes, first draft by November 14th.
+[00:03:47] Dr. Helen Park: Good. Next review is November 17th. Thanks all.

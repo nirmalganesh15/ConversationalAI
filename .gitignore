@@ -1,0 +1,25 @@
+# python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+backend/data/
+backend/static/
+.benchdata/
+
+# node / angular
+node_modules/
+frontend/dist/
+frontend/.angular/
+
+# env & secrets
+.env
+backend/.env
+*.pem
+
+# os / editors
+.DS_Store
+Thumbs.db
+.idea/
