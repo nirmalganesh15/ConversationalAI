@@ -1,5 +1,7 @@
 # Productionizing Atlas
 
+![AWS Bedrock production architecture](diagrams/03-aws-bedrock-production.png)
+
 The demo optimises for "one container, zero external services". Production optimises for tenancy,
 durability, scale and compliance. The code already has the seams (ports in `core/`, a composition
 root, env-only config), so most of this is infrastructure, not rewrites.

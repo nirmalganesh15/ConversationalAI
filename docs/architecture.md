@@ -1,5 +1,9 @@
 # Architecture in depth
 
+![Core architecture, layer by layer](diagrams/01-core-architecture.png)
+
+![Inside an agent](diagrams/02-agent-flow.png)
+
 ## Layers and dependency direction
 ```mermaid
 flowchart TB
